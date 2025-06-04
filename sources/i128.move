@@ -85,15 +85,7 @@ module integer_library::i128 {
     
     public fun sub(num1: I128, num2: I128): I128 {
         let diff = wrapping_sub(num1, num2);
-        let overflow = if (sign(num1) != sign(num2)) {
-            if (sign(num1) != sign(diff)) {
-                true
-            } else {
-                false
-            }
-        } else {
-            false
-        };
+        let overflow = sign(num1) != sign(num2) && sign(num1) != sign(diff);
         assert!(!overflow, EOverflow);
         diff
     }
