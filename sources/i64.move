@@ -76,15 +76,7 @@ module integer_library::i64 {
 
     public fun sub(num1: I64, num2: I64): I64 {
         let diff = wrapping_sub(num1, num2);
-        let overflow = if (sign(num1) != sign(num2)) {
-            if (sign(num1) != sign(diff)) {
-                true
-            } else {
-                false
-            }
-        } else {
-            false
-        };
+        let overflow = sign(num1) != sign(num2) && sign(num1) != sign(diff);
         assert!(!overflow, EOverflow);
         diff
     }

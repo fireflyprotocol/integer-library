@@ -75,15 +75,7 @@ module integer_library::i32 {
 
     public fun sub(num1: I32, num2: I32): I32 {
         let diff = wrapping_sub(num1, num2);
-        let overflow = if (sign(num1) != sign(num2)) {
-            if (sign(num1) != sign(diff)) {
-                true
-            } else {
-                false
-            }
-        } else {
-            false
-        };
+        let overflow = sign(num1) != sign(num2) && sign(num1) != sign(diff);
         assert!(!overflow, EOverflow);
         diff
     }
