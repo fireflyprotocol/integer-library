@@ -3,7 +3,7 @@
 [package]
 name = "IntegerLibrary"
 version = "1.0.0"
-published-at = "0x03637b7b60978ef4389124f7683456f0050ab015a0590d52b6e6cadb342af34a"
+published-at = "0x7ed928033044a2065decf7135c8291d0a42ae3e4e481c61200e79f6e17f3038b"
 
 [dependencies]
 Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.48.2" }

@@ -3,3 +3,7 @@
 /sui/build
 /build
 /.idea
+node_modules
+/.vscode
+/.DS_Store
+/.env
