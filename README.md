@@ -2,13 +2,6 @@
 
 A formally verified library of common unsigned and signed operations.
 
-# Specification Summary
-
-This is a summary of Sui Prover formal verification results. To replicate the results:
-1. Install Sui Prover
-2. Run `sui-prover` in the `specs` directory
-3. Run `sui-prover --no-bv-int-encoding` in the `specs-bv` directory
-
 ## Overview
 
 We have formally verified all non-trivial functions in this library using the Sui Prover. The library is a fork the widely-used integer-mate library but with a focus on security and correctness, and backed by full formal verification. This verification effort covers **126 functions** across multiple integer types (u64, u128, u256, i32, i64, i128). The only public functions not verified are wrappers-unwrappers of signed integers, as they are both trivial and needed as part of the verification itself.
@@ -72,6 +65,12 @@ Several functions exhibit important behavioral patterns that users should be awa
 - Certain operations require custom prover configurations due to complexity
 
 **✅ indicates that the specification is proved. All functions have been proved.**
+
+## How to replicate the results
+
+1. Install Sui Prover
+2. Run `sui-prover` in the `specs` directory
+3. Run `sui-prover --no-bv-int-encoding` in the `specs-bv` directory
 
 ## `i128.move`
 
