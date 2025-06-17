@@ -194,7 +194,7 @@ public fun wrapping_sub_spec(num1: I32, num2: I32): I32 {
 /*
  ✅ Computes `num1 - num2`.
  ⏮️ The function aborts when the result does not fit in `I32`.
- ⚠️ This function was initially incorrect but fixed after our reporting. Replace the target with `sub_buggy` to see the how the bug is caught.
+ ⚠️ This function was initially incorrect but fixed after our reporting.
 */
 #[spec(prove, target = sub)]
 public fun sub_spec(num1: I32, num2: I32): I32 {
