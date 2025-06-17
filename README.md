@@ -4,7 +4,7 @@ A formally verified library of common unsigned and signed operations.
 
 ## Overview
 
-We have formally verified all non-trivial functions in this library using the Sui Prover. The library is a fork the widely-used integer-mate library but with a focus on security and correctness, and backed by full formal verification. This verification effort covers **126 functions** across multiple integer types (u64, u128, u256, i32, i64, i128). The only public functions not verified are wrappers-unwrappers of signed integers, as they are both trivial and needed as part of the verification itself.
+We have formally verified all non-trivial functions of this library using the Sui Prover. The library is a fork the widely-used integer-mate library but with a focus on security and correctness, and backed by full formal verification. The verification effort covers **126 functions** across multiple integer types (u64, u128, u256, i32, i64, i128). The only public functions not verified are wrappers-unwrappers of signed integers, as they are both trivial and needed as part of the verification itself.
 
 ## Key Highlights
 
