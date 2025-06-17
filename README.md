@@ -12,7 +12,7 @@ We have formally verified all non-trivial functions of this library using the Su
 
 1. **Cetus Protocol Vulnerability Discovery**: After the Cetus protocol exploit we checked both the exitance of the bug and the correctness of the fix using formal verification. [See our detailed analysis](https://x.com/AsymptoticTech/status/1925745737243013596).
 
-2. **Integer Library Bug**: During the initial formal verification of the library we discovered and reported a new bug in the `i32::sub` function that could cause incorrect results under specific conditions. We coordinated with the Sui Foundation for an ecosystem-wide fix. [See our report](https://x.com/AsymptoticTech/status/1932152623316230630). The buggy version is preserved as `sub_buggy` in the codebase for educational purposes.
+2. **Integer Library Bug**: During the initial formal verification of the library we discovered and reported a new bug in the signed `::sub` function that could cause incorrect results under specific conditions. We coordinated with the Sui Foundation for an ecosystem-wide fix. [See our report](https://x.com/AsymptoticTech/status/1932152623316230630). The buggy version is preserved as `sub_buggy` in the codebase for educational purposes.
 
 ### 📊 Verification Coverage
 
