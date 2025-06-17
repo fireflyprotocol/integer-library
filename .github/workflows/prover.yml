@@ -37,8 +37,8 @@ jobs:
       - name: Run Tests
         run: |
           cd specs
-          sui-prover 2
+          sui-prover
           cd ..
           cd specs-bv
-          sui-prover 2 --no-bv-int-encoding
+          sui-prover --no-bv-int-encoding
           echo "All tests passed!"
