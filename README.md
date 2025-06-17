@@ -9,7 +9,69 @@ This is a summary of Sui Prover formal verification results. To replicate the re
 2. Run `sui-prover` in the `specs` directory
 3. Run `sui-prover --no-bv-int-encoding` in the `specs-bv` directory
 
-**✅ indicates that the specification is proved**
+## Overview
+
+We have formally verified all non-trivial functions in this library using the Sui Prover. The library is a fork the widely-used integer-mate library but with a focus on security and correctness, and backed by full formal verification. This verification effort covers **126 functions** across multiple integer types (u64, u128, u256, i32, i64, i128). The only public functions not verified are wrappers-unwrappers of signed integers, as they are both trivial and needed as part of the verification itself.
+
+## Key Highlights
+
+### 🔍 Security Findings
+
+1. **Cetus Protocol Vulnerability Discovery**: After the Cetus protocol exploit we checked both the exitance of the bug and the correctness of the fix using formal verification. [See our detailed analysis](https://x.com/AsymptoticTech/status/1925745737243013596).
+
+2. **Integer Library Bug**: During the initial formal verification of the library we discovered and reported a new bug in the `i32::sub` function that could cause incorrect results under specific conditions. We coordinated with the Sui Foundation for an ecosystem-wide fix. [See our report](https://x.com/AsymptoticTech/status/1932152623316230630). The buggy version is preserved as `sub_buggy` in the codebase for educational purposes.
+
+### 📊 Verification Coverage
+
+- **Total Functions Verified**: 126
+- **Integer Types Covered**: u64, u128, u256, I32, I64, I128
+- **Operation Categories**: 
+  - Arithmetic operations (add, sub, mul, div, mod)
+  - Bitwise operations (shl, shr, and, or, not)
+  - Overflow-safe variants (wrapping, checked, overflowing)
+  - Comparison operations (eq, lt, gt, lte, gte)
+  - Type conversions and utility functions
+
+### 🎯 What We Proved
+
+Through formal verification, we established comprehensive mathematical guarantees for every possible input:
+
+**Functional Correctness:**
+- **Exact computation**: Every function produces the mathematically correct result for all valid inputs
+- **Abort conditions**: Precise specification of when functions abort (division by zero, overflow in non-wrapping functions, shift amounts out of bounds)
+- **No undefined behavior**: Every input produces either a well-defined result or a well-defined abort
+
+**Overflow Behavior:**
+- **Wrapping semantics**: `wrapping_*` functions correctly implement modular arithmetic (mod 2^n)
+- **Overflow detection**: `overflowing_*` functions correctly return both wrapped result and overflow flag
+- **Checked operations**: Functions without `wrapping_` abort on overflow, preventing silent errors
+- **Full precision**: Operations like `full_mul` correctly compute results in higher precision (e.g., 256-bit product from two 128-bit inputs)
+
+**Integer Type Properties:**
+- **Two's complement correctness**: Signed integer operations correctly implement two's complement arithmetic
+- **Sign handling**: Negation, absolute value, and sign detection work correctly for all values including boundary cases
+- **Type conversions**: Conversions between integer types correctly preserve values when in range and abort when out of range
+- **Boundary correctness**: Operations handle MIN/MAX values correctly (e.g., `abs(MIN_I128)` correctly aborts)
+
+**Bit Operations:**
+- **Shift correctness**: Left and right shifts produce correct results with proper bounds checking
+- **Arithmetic right shift**: Signed right shifts correctly extend the sign bit
+- **Bitwise operations**: AND, OR, NOT operations compute correct bit-level results
+
+**Division and Modulo:**
+- **Division modes**: Correct implementation of floor, ceiling, and truncating division
+- **Zero handling**: All division operations correctly abort on division by zero
+- **Remainder correctness**: `div_mod` returns quotient and remainder satisfying `dividend = quotient * divisor + remainder`
+
+### ⚠️ Notable Patterns
+
+Several functions exhibit important behavioral patterns that users should be aware of:
+- Functions with `wrapping_` prefix perform modular arithmetic and never abort
+- Functions with `checked_` prefix return overflow indicators
+- Some shift operations use modular arithmetic which can be unintuitive (see warnings in function descriptions)
+- Certain operations require custom prover configurations due to complexity
+
+**✅ indicates that the specification is proved. All functions have been proved.**
 
 ## `i128.move`
 

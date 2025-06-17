@@ -54,6 +54,8 @@ public fun shrw_spec(n: u256): u256 {
  ✅ Shifts `n` left by 64 bits (one word) and returns a boolean indicating overflow.
  ⏮️ The function does not abort.
  ⚠️ Returns (0, true) when overflow occurs, not the wrapped value.
+ ⚠️ Note that an incorrect version of this function was at the root of the Cetus exploit: 
+    See our analysis here: https://x.com/AsymptoticTech/status/1925745737243013596
 */
 #[spec(prove, target = checked_shlw)]
 public fun checked_shlw_spec(n: u256): (u256, bool) {
