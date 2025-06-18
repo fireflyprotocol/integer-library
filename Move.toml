@@ -5,8 +5,5 @@ name = "IntegerLibrary"
 version = "1.0.1"
 published-at = "0xab5e63352d0f05881bdfa1631cc0f7fc1669175a00d608828a924df481a9e4bd"
 
-[dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "mainnet-v1.48.2" }
-
 [addresses]
 integer_library = "0x03637b7b60978ef4389124f7683456f0050ab015a0590d52b6e6cadb342af34a"

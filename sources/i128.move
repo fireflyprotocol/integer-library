@@ -97,12 +97,17 @@ module integer_library::i128 {
     }
 
     public fun overflowing_sub(num1: I128, num2: I128): (I128, bool) {
-        let sub_num = wrapping_add(I128 {
-            bits: u128_neg(num2.bits)
-        }, from(1));
-        let sum = wrapping_add(num1, sub_num);
-        let overflow = (sign(num1) & sign(sub_num) & u8_neg(sign(sum))) + (u8_neg(sign(num1)) & u8_neg(sign(sub_num)) & sign(sum));
-        (sum, overflow != 0)
+        let diff = wrapping_sub(num1, num2);
+        let overflow = if (sign(num1) != sign(num2)) {
+            if (sign(num1) != sign(diff)) {
+                true
+            } else {
+                false
+            }
+        } else {
+            false
+        };
+        (diff, overflow)
     }
 
     public fun mul(num1: I128, num2: I128): I128 {
